@@ -5,7 +5,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-
 import androidx.recyclerview.widget.RecyclerView
 import com.dzenis_ska.shopinglist.R
 import com.dzenis_ska.shopinglist.databinding.NoteListItemBinding
@@ -13,15 +12,12 @@ import com.dzenis_ska.shopinglist.entities.NoteItem
 
 class NoteAdapter : ListAdapter<NoteItem, NoteAdapter.ItemHolder>(ItemComparator()) {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemHolder {
         return ItemHolder.create(parent)
     }
-
     override fun onBindViewHolder(holder: ItemHolder, position: Int) {
         holder.setData(getItem(position))
     }
-
 
     class ItemHolder(view: View) : RecyclerView.ViewHolder(view){
         private val binding = NoteListItemBinding.bind(view)

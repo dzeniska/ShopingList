@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import com.dzenis_ska.shopinglist.R
 import com.dzenis_ska.shopinglist.databinding.ActivityMainBinding
+import com.dzenis_ska.shopinglist.fragments.FragmentManager
+import com.dzenis_ska.shopinglist.fragments.NoteFragment
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
@@ -20,7 +22,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.settings ->{
                     Log.d("!!!", "settings")
                 }
-                R.id.notes ->{Log.d("!!!", "notes")}
+                R.id.notes ->{
+                    FragmentManager.setFragment(NoteFragment.newInstance(), this)
+                    Log.d("!!!", "notes")
+                }
                 R.id.shop_list ->{Log.d("!!!", "shop_list")}
                 R.id.new_item ->{Log.d("!!!", "new_item")}
             }
