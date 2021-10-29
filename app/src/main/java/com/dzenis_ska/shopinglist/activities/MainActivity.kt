@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
                     Log.d("!!!", "notes")
                 }
                 R.id.shop_list ->{Log.d("!!!", "shop_list")}
-                R.id.new_item ->{Log.d("!!!", "new_item")}
+                R.id.new_item ->{
+                    FragmentManager.currentFrag?.onCLickNew()
+                }
             }
             true
         }
