@@ -8,4 +8,12 @@
     <string name="title_hint">Title</string>
     <string name="note_fragment">Note Fragment</string>
     <string name="description_hint">Description</string>
+    <string name="new_list_name">New List Name</string>
+    <string name="list_name">List Name</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="crete_list">Create List</string>
+    <string name="delete_alert">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="delete_item">Do you want to delete thisitem?</string>
 </resources>

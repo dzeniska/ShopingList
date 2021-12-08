@@ -11,8 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopingList">
         <activity
-            android:name=".activities.NewNoteActivity"
+            android:name=".activities.ShopListActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.NewNoteActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NewNote"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
             android:name=".activities.MainActivity"
             android:exported="true">

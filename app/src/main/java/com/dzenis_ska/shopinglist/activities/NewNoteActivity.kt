@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.text.Spannable
 import android.text.style.ForegroundColorSpan
 import android.text.style.StyleSpan
+import android.view.ActionMode
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -20,6 +21,7 @@ import com.dzenis_ska.shopinglist.entities.NoteItem
 import com.dzenis_ska.shopinglist.fragments.NoteFragment
 import com.dzenis_ska.shopinglist.utils.HtmlManager
 import com.dzenis_ska.shopinglist.utils.MyTouchListener
+import com.dzenis_ska.shopinglist.utils.TimeManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,11 +37,12 @@ class NewNoteActivity : AppCompatActivity() {
         getNote()
         init()
         onClickColorPicker()
+        actionMenuCallBack()
     }
 
     private fun onClickColorPicker() = with(binding){
         ibRed.setOnClickListener {  setColorForSelectedText(R.color.picker_red)}
-        ibBlack.setOnClickListener {  setColorForSelectedText(R.color.picker_black)}
+        ibBlack.setOnClickListener {  setColorForSelectedText(  R.color.picker_black)}
         ibBlue.setOnClickListener {  setColorForSelectedText(R.color.picker_blue)}
         ibGreen.setOnClickListener {  setColorForSelectedText(R.color.picker_green)}
         ibYellow.setOnClickListener {  setColorForSelectedText(R.color.picker_yellow)}
@@ -148,15 +151,11 @@ edTitle.setText(note?.title)
             null,
             binding.edTitle.text.toString(),
             HtmlManager.toHtml(binding.edDescription.text),
-            getCurrentTime(),
+            TimeManager.getCurrentTime(),
             ""
         )
     }
 
-    private fun getCurrentTime(): String{
-        val formatter = SimpleDateFormat("hh:mm:ss - yyyy/MM/dd", Locale.getDefault())
-        return formatter.format(Calendar.getInstance().time)
-    }
 
     private fun actionBarSettings(){
         val ab = supportActionBar
@@ -182,5 +181,24 @@ edTitle.setText(note?.title)
 
         } )
         binding.colorPicker.startAnimation(openAnim)
+    }
+
+    private fun actionMenuCallBack(){
+        val actionCallback = object : ActionMode.Callback {
+            override fun onCreateActionMode(p0: ActionMode?, menu: Menu?): Boolean {
+                menu?.clear()
+                return true
+            }
+            override fun onPrepareActionMode(p0: ActionMode?, menu: Menu?): Boolean {
+                menu?.clear()
+                return true
+            }
+            override fun onActionItemClicked(p0: ActionMode?, p1: MenuItem?): Boolean {
+                return true
+            }
+            override fun onDestroyActionMode(p0: ActionMode?) {
+            }
+        }
+        binding.edDescription.customSelectionActionModeCallback = actionCallback
     }
 }

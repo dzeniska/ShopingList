@@ -10,8 +10,13 @@
         <entry key="..\:/android/ShopingList/app/src/main/res/drawable/ic_color.xml" value="0.2703125" />
         <entry key="..\:/android/ShopingList/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/android/ShopingList/app/src/main/res/layout/activity_new_note.xml" value="0.4" />
+        <entry key="..\:/android/ShopingList/app/src/main/res/layout/activity_shop_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/android/ShopingList/app/src/main/res/layout/delete_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/android/ShopingList/app/src/main/res/layout/fragment_note.xml" value="0.264" />
-        <entry key="..\:/android/ShopingList/app/src/main/res/layout/note_list_item.xml" value="0.4" />
+        <entry key="..\:/android/ShopingList/app/src/main/res/layout/fragment_shop_list_names.xml" value="0.25052083333333336" />
+        <entry key="..\:/android/ShopingList/app/src/main/res/layout/list_name_item.xml" value="0.264" />
+        <entry key="..\:/android/ShopingList/app/src/main/res/layout/new_list_dialog.xml" value="0.25052083333333336" />
+        <entry key="..\:/android/ShopingList/app/src/main/res/layout/note_list_item.xml" value="0.264" />
         <entry key="..\:/android/ShopingList/app/src/main/res/menu/new_note_menu.xml" value="0.25416666666666665" />
       </map>
     </option>
