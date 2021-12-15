@@ -8,6 +8,7 @@
     <color name="green_main">#8BC34A</color>
     <color name="green_dark">#376107</color>
     <color name="black">#FF000000</color>
+    <color name="gray">#CFD8CB</color>
     <color name="white">#FFFFFFFF</color>
 
     <color name="picker_red">#FF5252</color>

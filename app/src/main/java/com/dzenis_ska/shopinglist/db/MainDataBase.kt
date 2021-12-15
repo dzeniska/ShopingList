@@ -6,13 +6,13 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.dzenis_ska.shopinglist.entities.LibraryItem
 import com.dzenis_ska.shopinglist.entities.NoteItem
-import com.dzenis_ska.shopinglist.entities.ShoppingListItem
+import com.dzenis_ska.shopinglist.entities.ShopListItem
 import com.dzenis_ska.shopinglist.entities.ShopListNameItem
 
 
 @Database(entities = [LibraryItem::class,
     NoteItem::class,
-    ShoppingListItem::class,
+    ShopListItem::class,
     ShopListNameItem::class],
     version = 1)
 

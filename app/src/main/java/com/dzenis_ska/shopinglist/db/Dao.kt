@@ -6,6 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 import com.dzenis_ska.shopinglist.entities.NoteItem
 import com.dzenis_ska.shopinglist.entities.ShopListNameItem
+import com.dzenis_ska.shopinglist.entities.ShopListItem
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -17,6 +18,9 @@ interface  Dao {
     @Query("SELECT * FROM shopping_list_names")
     fun getAllShopListNames(): Flow<List<ShopListNameItem>>
 
+    @Query("SELECT * FROM shop_list_item WHERE listId LIKE :listId")
+    fun getAllShopListItems(listId: Int): Flow<List<ShopListItem>>
+
     @Query("DELETE FROM note_list WHERE id IS :id")
     suspend fun deleteNote(id: Int)
 
@@ -27,10 +31,17 @@ interface  Dao {
     suspend fun insertNote(note: NoteItem)
 
     @Insert
+    suspend fun insertItem(shopListItem: ShopListItem)
+
+    @Insert
     suspend fun insertShopListName(note: ShopListNameItem)
 
     @Update
     suspend fun updateNote(note: NoteItem)
+
+    @Update
+    suspend fun updateListItem(item: ShopListItem)
+
 
     @Update
     suspend fun updateListName(note: ShopListNameItem)
