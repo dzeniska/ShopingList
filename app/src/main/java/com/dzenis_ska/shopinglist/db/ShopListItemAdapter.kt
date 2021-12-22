@@ -1,6 +1,7 @@
 package com.dzenis_ska.shopinglist.db
 
 import android.graphics.Paint
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.dzenis_ska.shopinglist.R
 import com.dzenis_ska.shopinglist.databinding.ListNameItemBinding
+import com.dzenis_ska.shopinglist.databinding.ShopLibraryListItemBinding
 import com.dzenis_ska.shopinglist.databinding.ShopListItemBinding
 import com.dzenis_ska.shopinglist.entities.ShopListNameItem
 import com.dzenis_ska.shopinglist.entities.ShopListItem
@@ -58,7 +60,16 @@ class ShopListItemAdapter(private val listener: Listener) : ListAdapter<ShopList
             }
         }
         fun setLibraryData(shopListItem: ShopListItem, listener: Listener){
-
+            val binding = ShopLibraryListItemBinding.bind(view)
+            binding.apply {
+                tvName.text = shopListItem.name
+                imEdit.setOnClickListener {
+                    listener.onClickItem(shopListItem, EDIT_LIBRARY_ITEM)
+                }
+                imDelete.setOnClickListener {
+                    listener.onClickItem(shopListItem, DELETE_LIBRARY_ITEM)
+                }
+            }
         }
 
         private fun setPaintFlagAndColor(binding: ShopListItemBinding){
@@ -119,6 +130,8 @@ class ShopListItemAdapter(private val listener: Listener) : ListAdapter<ShopList
     companion object {
         const val EDIT = 0
         const val CHECK_BOX = 1
+        const val EDIT_LIBRARY_ITEM = 2
+        const val DELETE_LIBRARY_ITEM = 3
     }
 
 }

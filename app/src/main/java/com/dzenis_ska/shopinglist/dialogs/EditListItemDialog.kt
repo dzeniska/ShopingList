@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import com.dzenis_ska.shopinglist.R
 import com.dzenis_ska.shopinglist.databinding.EditListItemDialogBinding
 import com.dzenis_ska.shopinglist.databinding.NewListDialogBinding
@@ -18,7 +19,8 @@ object EditListItemDialog {
         binding.apply {
             edName.setText(item.name)
             edInfo.setText(item.itemInfo)
-           bUpdate.setOnClickListener {
+            if(item.itemType == 1) edInfo.visibility = View.GONE
+            bUpdate.setOnClickListener {
                if(edName.text.toString().isNotEmpty()){
                    listener.onClick(item.copy(
                        name = edName.text.toString(),
