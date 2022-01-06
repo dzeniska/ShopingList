@@ -18,6 +18,12 @@
     <color name="picker_yellow">#FFFF00</color>
     <color name="picker_orange">#FFAB40</color>
 
+    <color name="blue_light">#80D8FF</color>
+    <color name="blue_dark">#00B0FF</color>
+
+    <color name="red_light">#FF5252</color>
+    <color name="red_dark">#D50000</color>
+
 
 
 </resources>

@@ -1,8 +1,11 @@
 package com.dzenis_ska.shopinglist.db
 
+import android.content.Context
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -19,12 +22,19 @@ class ShopListNameAdapter(private val listener: Listener) : ListAdapter<ShopList
         holder.setData(getItem(position), listener)
     }
 
-    class ItemHolder(view: View) : RecyclerView.ViewHolder(view){
+    class ItemHolder(val view: View) : RecyclerView.ViewHolder(view){
         private val binding = ListNameItemBinding.bind(view)
 
         fun setData(shopListNameItem: ShopListNameItem, listener: Listener) = with(binding){
             tvListName.text = shopListNameItem.name
             tvTime.text = shopListNameItem.time
+            pBar.max = shopListNameItem.allItemCounter
+            pBar.progress = shopListNameItem.checkedItemsCounter
+            val colorState = ColorStateList.valueOf(getProgressColorState(shopListNameItem, view.context))
+            pBar.progressTintList = colorState
+            val counterText = "${shopListNameItem.checkedItemsCounter}/${shopListNameItem.allItemCounter}"
+            counterCard.backgroundTintList = colorState
+            tvCounter.text = counterText
             itemView.setOnClickListener {
                 listener.onClickItem(shopListNameItem)
             }
@@ -35,6 +45,14 @@ class ShopListNameAdapter(private val listener: Listener) : ListAdapter<ShopList
                 listener.editItem(shopListNameItem)
             }
         }
+
+        private fun getProgressColorState(item: ShopListNameItem, context: Context): Int {
+            return if (item.checkedItemsCounter != item.allItemCounter)
+                ContextCompat.getColor(context, R.color.picker_red)
+            else
+                ContextCompat.getColor(context, R.color.green_main)
+        }
+
        companion object{
             fun create(parent: ViewGroup): ItemHolder{
                 return ItemHolder(LayoutInflater

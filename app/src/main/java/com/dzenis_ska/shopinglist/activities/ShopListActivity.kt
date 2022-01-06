@@ -3,15 +3,12 @@ package com.dzenis_ska.shopinglist.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.TokenWatcher
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dzenis_ska.shopinglist.R
@@ -72,7 +69,7 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.save_item -> adNewShopItem()
+            R.id.save_item -> addNewShopItem(edItem?.text.toString())
             R.id.delete_list -> {
                 mainViewModel.deleteShopList(shopListNameItem?.id!!, true)
                 finish()
@@ -87,12 +84,12 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
         }
         return super.onOptionsItemSelected(item)
     }
-    private fun adNewShopItem(){
+    private fun addNewShopItem(name: String){
 
-        if(edItem?.text.toString().isEmpty()) return
+        if(name.isEmpty()) return
         val item = ShopListItem(
             null,
-            edItem?.text.toString(),
+            name,
             "",
             false,
             shopListNameItem?.id!!,
@@ -186,6 +183,8 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
                 mainViewModel.deleteLibraryItem(shopListItem.id!!)
                 mainViewModel.getAllLibraryItems("%${edItem?.text.toString()}%")
             }
+            ShopListItemAdapter.ADD -> addNewShopItem(shopListItem.name)
+
         }
     }
     private fun editListItem(item: ShopListItem){
@@ -203,6 +202,23 @@ class ShopListActivity : AppCompatActivity(), ShopListItemAdapter.Listener {
                 mainViewModel.getAllLibraryItems("%${edItem?.text.toString()}%")
             }
         })
+    }
+
+    private fun saveItemCount(){
+        var checkedItemCounter = 0
+        adapter?.currentList?.forEach {
+            if(it.itemChecked) checkedItemCounter++
+        }
+        val tempShopListNameItem = shopListNameItem?.copy(
+            allItemCounter = adapter?.itemCount!!,
+            checkedItemsCounter = checkedItemCounter
+        )
+        mainViewModel.updateListName(tempShopListNameItem!!)
+    }
+
+    override fun onBackPressed() {
+        saveItemCount()
+        super.onBackPressed()
     }
 
 }

@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="#FFFFFF"
+        android:theme="@style/Theme.EditBlue"
         android:hint="New Item"
         android:inputType="textPersonName"
         />
